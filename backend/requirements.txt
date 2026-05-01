@@ -1,0 +1,38 @@
+# =========================
+# MACHINE LEARNING
+# =========================
+scikit-learn
+joblib
+xgboost
+lightgbm
+shap
+# =========================
+# CORE DATA STACK
+# =========================
+pandas
+numpy
+sqlalchemy
+psycopg2-binary
+# =========================
+# UTILS
+# =========================
+prefect
+python-dotenv
+loguru
+tqdm
+typer
+# =========================
+# DEV TOOLS
+# =========================
+ruff
+pytest
+mkdocs
+# =========================
+# BACKEND
+# =========================
+flask
+flask-cors
+gunicorn
+
+# Install project
+-e .

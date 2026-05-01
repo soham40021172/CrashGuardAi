@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-dark: #23354d; /* Background color from your image */
+  --color-navy-light: #334761; /* Hover/Active states */
+  --font-sans: "Inter", ui-sans-serif, system-ui;
+}
+
+@layer base {
+  body {
+    @apply bg-gray-100 antialiased;
+  }
+}
