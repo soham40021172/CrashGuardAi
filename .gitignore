@@ -47,3 +47,7 @@ instance/
 # API secrets
 secrets.json
 credentials.json
+
+data/raw/*.csv
+data/interim/*.csv
+data/processed/*.csv
