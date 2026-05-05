@@ -3,7 +3,7 @@ import React from "react";
 export default function VideoPage() {
   const videos = [
     {
-      url: "https://youtu.be/a0pc44KEHp0",
+      url: "https://youtu.be/t2-qywa1io8",
       title: "Power BI Dashboard Walkthrough",
       description:
         "Explore insights from vehicle crash data including trends, risk factors, and injury analysis using interactive dashboards.",

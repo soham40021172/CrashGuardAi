@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function AboutPage() {
-  const videoUrl = "https://youtu.be/YOUR_VIDEO_LINK";
+  const videoUrl = "https://youtu.be/a0pc44KEHp0";
 
   const getEmbedUrl = (url) => {
     const videoId = url.split("/").pop();
