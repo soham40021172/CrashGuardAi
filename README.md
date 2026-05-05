@@ -306,38 +306,6 @@ http://localhost:8000
 
 ---
 
-## 📡 API Endpoint
-
-### Prediction Endpoint
-
-**POST**
-
-```text
-/api/predict
-```
-
-### Example Request
-
-```json
-{
-  "collision_type_clean": "REAR_END",
-  "weather_clean": "RAIN",
-  "vehicle_age": 5,
-  "speed_limit": 35
-}
-```
-
-### Example Response
-
-```json
-{
-  "injury_probability": 0.76,
-  "prediction": 1
-}
-```
-
----
-
 ## 🧠 Feature Engineering Pipeline
 
 ### FeatureSelector
