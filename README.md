@@ -378,6 +378,18 @@ RandomForestClassifier(
     n_jobs=-1
 )
 ```
+## 🔍 Model Explainability (SHAP)
+
+The system includes **SHAP (SHapley Additive exPlanations)** to interpret model predictions.
+
+### What it provides:
+
+* Shows **which features increased injury risk**
+* Shows **which features decreased injury risk**
+* Displays **impact contribution (%) per feature**
+* Helps make the model **transparent and explainable**
+
+This makes the model suitable for **real-world decision support systems**.
 
 ---
 
@@ -411,40 +423,109 @@ Dashboard includes:
 
 ---
 
-## 🔮 Future Improvements
+## 📂 Dataset Access
 
-* React Frontend Integration
-* Docker Support
-* Cloud Deployment
-* Model Monitoring
-* SHAP Explainability
-* Authentication System
-* Batch Prediction API
-* CI/CD Integration
+Due to GitHub file size limitations, the dataset is hosted externally.
+
+👉 Download the raw dataset from Google Drive:
+https://drive.google.com/file/d/1pRww1svVeVpW0KagA2gEzeUgJnztQv7R/view?usp=drive_link
 
 ---
 
-## ☁️ Deployment Options
+## 📥 How to Use the Dataset
 
-### Backend Hosting
-
-* Render
-* Railway
-* Fly.io
-* AWS EC2
-
-### Frontend Hosting
-
-* Vercel
-* Netlify
-
-### Database Hosting
-
-* Neon PostgreSQL
-* Supabase
+After downloading, you have **two options depending on your workflow**:
 
 ---
 
+### 🔹 Option 1: For Notebook / Local Analysis
+
+1. Download the dataset
+2. Place it inside:
+
+```text
+data/raw/
+```
+
+3. Rename file (recommended):
+
+```text
+Crash_Reporting_-_Drivers_Data.csv
+```
+
+4. Run notebooks or scripts normally
+
+---
+
+### 🔹 Option 2: For Full Pipeline (Recommended)
+
+This project is designed using a **production-style database workflow**.
+
+#### Step 1 — Create PostgreSQL Database
+
+```sql
+CREATE DATABASE crash_report_db;
+```
+
+---
+
+#### Step 2 — Import CSV into PostgreSQL
+
+You can use:
+
+* pgAdmin (GUI)
+* OR SQL command:
+
+```sql
+COPY crash_reports
+FROM '/path/to/Crash_Reporting_-_Drivers_Data.csv'
+DELIMITER ','
+CSV HEADER;
+```
+
+---
+
+#### Step 3 — Run Cleaning Pipeline
+
+```bash
+python crash_report/pipeline/load.py
+```
+
+This will create:
+
+```text
+crash_reports_analysis_clean
+```
+
+---
+
+#### Step 4 — Train Model
+
+```bash
+python crash_report/modeling/train.py
+```
+
+---
+
+## ⚠️ Important Note
+
+* The ML pipeline **does NOT directly read CSV files**
+* It **expects data from PostgreSQL**
+* This mimics **real-world production systems**
+
+---
+
+## 💡 Pro Tip
+
+If you want a simpler setup, you can:
+
+* Modify `extract.py` to read CSV directly
+* OR create a helper script (`setup_db.py`) to automate DB loading
+
+(Advanced users can extend this easily)
+
+
+---
 ## 👨‍💻 Author
 
 Developed as a complete **Machine Learning + Data Engineering + Analytics Project** for production-grade workflow demonstration.
