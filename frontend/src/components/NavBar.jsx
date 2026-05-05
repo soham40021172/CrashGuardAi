@@ -49,15 +49,21 @@ const Navbar = () => {
           Analytics
         </Link>
 
-        <button className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm font-medium">
-          <FileText className="w-4 h-4" />
-          Reports
-        </button>
+        <Link
+          to="/about"
+          className={`flex items-center gap-2 text-sm font-medium transition-colors ${
+            location.pathname === '/about'
+              ? 'text-white'
+              : 'text-slate-400 hover:text-white'
+          }`}
+        >
+          <Settings className="w-4 h-4" />
+          About
+        </Link>
       </div>
 
       {/* Right: User Profile */}
       <div className="flex items-center gap-2 bg-slate-800/50 pr-2 pl-1 py-1 rounded-full border border-slate-700 hover:border-slate-500 cursor-pointer transition-all">
-
       </div>
     </nav>
   );

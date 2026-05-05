@@ -8,6 +8,7 @@ import RiskCalculator from './components/RiskCalculator';
 import RiskMeter from './components/RiskMeter';
 import RiskBreakdown from './components/RiskBreakdown';
 import VideoPage from './pages/VideoPage';
+import AboutPage from './pages/AboutPage';
 
 import { getRiskPrediction } from './services/api';
 
@@ -79,6 +80,7 @@ function App() {
           />
 
           <Route path="/analytics" element={<VideoPage />} />
+          <Route path="/about" element={<AboutPage />} />
         </Routes>
       </div>
     </BrowserRouter>
