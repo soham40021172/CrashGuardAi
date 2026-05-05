@@ -14,6 +14,43 @@ Built using:
 
 ---
 
+---
+
+## 🎥 Demo & Project Walkthrough
+
+Watch the system in action:
+
+### 🚀 Full Project Demo (Model + Web App)
+
+👉 [https://www.youtube.com/your-demo-link](https://youtu.be/a0pc44KEHp0)
+
+---
+
+### 📊 Power BI Dashboard Walkthrough
+
+👉 [https://www.youtube.com/your-powerbi-link](https://youtu.be/t2-qywa1io8)
+
+---
+
+### 🧠 Model Prediction + Explainability (SHAP)
+
+👉 https://www.youtube.com/your-shap-demo-link
+
+---
+
+## 💡 What these videos show:
+
+* End-to-end pipeline execution
+* Model training and predictions
+* Real-time API usage via Flask
+* Frontend interaction (React UI)
+* Power BI insights and analytics
+* SHAP-based model explainability
+
+---
+
+
+---
 ## 📌 Overview
 
 The **Vehicle Crash Injury Prediction System** is an end-to-end analytics and machine learning project that transforms raw crash data into actionable injury risk predictions.
