@@ -57,14 +57,7 @@ const Navbar = () => {
 
       {/* Right: User Profile */}
       <div className="flex items-center gap-2 bg-slate-800/50 pr-2 pl-1 py-1 rounded-full border border-slate-700 hover:border-slate-500 cursor-pointer transition-all">
-        <div className="w-8 h-8 rounded-full overflow-hidden border border-slate-600">
-          <img
-            src="https://ui-avatars.com/api/?name=Admin+User&background=0ea5e9&color=fff"
-            alt="User avatar"
-          />
-        </div>
-        <span className="text-xs font-semibold px-1">Admin User</span>
-        <ChevronDown className="w-4 h-4 text-slate-500" />
+
       </div>
     </nav>
   );

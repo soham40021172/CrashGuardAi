@@ -1,0 +1,75 @@
+name: CrashGuardAI CI/CD Pipeline
+
+on:
+push:
+branches: [main]
+pull_request:
+branches: [main]
+
+jobs:
+
+test:
+runs-on: ubuntu-latest
+
+```
+steps:
+  - name: Checkout Code
+    uses: actions/checkout@v3
+
+  - name: Set up Python
+    uses: actions/setup-python@v4
+    with:
+      python-version: "3.11"
+
+  - name: Install Dependencies
+    run: |
+      pip install -r requirements.txt
+
+  - name: Run Tests
+    run: |
+      pytest
+```
+
+build-backend:
+runs-on: ubuntu-latest
+needs: test
+
+```
+steps:
+  - name: Checkout Code
+    uses: actions/checkout@v3
+
+  - name: Install Backend Dependencies
+    run: |
+      cd backend
+      pip install -r requirements.txt
+
+  - name: Check Backend Runs
+    run: |
+      python backend/wsgi.py & sleep 5
+```
+
+build-frontend:
+runs-on: ubuntu-latest
+needs: test
+
+```
+steps:
+  - name: Checkout Code
+    uses: actions/checkout@v3
+
+  - name: Setup Node
+    uses: actions/setup-node@v4
+    with:
+      node-version: "18"
+
+  - name: Install Frontend
+    run: |
+      cd frontend
+      npm install
+
+  - name: Build Frontend
+    run: |
+      cd frontend
+      npm run build
+```
