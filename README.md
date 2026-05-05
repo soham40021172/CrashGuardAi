@@ -32,12 +32,6 @@ Watch the system in action:
 
 ---
 
-### 🧠 Model Prediction + Explainability (SHAP)
-
-👉 https://www.youtube.com/your-shap-demo-link
-
----
-
 ## 💡 What these videos show:
 
 * End-to-end pipeline execution
