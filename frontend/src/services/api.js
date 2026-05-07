@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // 1. Create a "Base Instance" so you don't repeat the URL everywhere
 const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000',
+  baseURL: import.meta.env.VITE_API_URL || 'https://crashguardai.onrender.com',
   headers: {
     'Content-Type': 'application/json',
   },

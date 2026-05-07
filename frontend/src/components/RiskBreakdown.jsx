@@ -57,37 +57,29 @@ const RiskFactorCard = ({ icon: Icon, label, value, trend }) => {
   );
 };
 
-const RiskBreakdown = ({ factor, recommendation }) => {
+const RiskBreakdown = ({ factor}) => {
   return (
     <div className="max-w-4xl mx-auto mt-8 space-y-6">
       
       {/* Five Reason Boxes */}
       <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-        <RiskFactorCard icon={LucideIcons.CloudRain} label="Weather Impact" value="+22%" />
-        <RiskFactorCard icon={LucideIcons.Gauge} label="Speed Factor" value="+15%" />
-        <RiskFactorCard icon={LucideIcons.AlertTriangle} label="Road Friction" value="-18%" />
-        <RiskFactorCard icon={LucideIcons.Users} label="Driver State" value="+12%" />
-        <RiskFactorCard icon={LucideIcons.Calendar} label="Temporal Risk" value="-08%" />
-      </div>
-
-      {/* Safety Recommendation Panel */}
-      <div className="bg-[#fcfbf9] border border-slate-200 rounded-3xl p-6 flex flex-col md:flex-row items-center gap-6">
-        <div className="bg-amber-100 p-4 rounded-full">
-          <LucideIcons.Lightbulb className="w-8 h-8 text-amber-600" />
-        </div>
+        {factor?.map((item, index) => {
         
-        <div className="flex-1 space-y-2 text-center md:text-left">
-          <h3 className="text-sm font-black text-slate-800 uppercase tracking-widest">Safety Recommendation</h3>
-          <p className="text-slate-600 text-sm leading-relaxed">
-            Reduce speed by <span className="font-bold text-amber-700">10-15 km/h</span> and maintain safe distance. 
-            Wet roads combined with speed violations pose a pronounced risk.
-          </p>
-        </div>
+        const iconName = featureIconMap[item.feature] || "AlertTriangle";
+        const IconComponent = LucideIcons[iconName];
 
-        <button className="flex items-center gap-2 bg-white border border-slate-300 px-6 py-3 rounded-xl text-xs font-bold text-slate-700 hover:bg-slate-50 transition-all shadow-sm">
-          <LucideIcons.Download className="w-4 h-4" />
-          Download Report
-        </button>
+        return (
+          <RiskFactorCard
+            key={index}
+            icon={IconComponent}
+            label={item.feature}
+            value={`${item.impact_score > 0 ? '+' : ''}${(
+              item.impact_score * 100
+            ).toFixed(1)}%`}
+            trend={item.effect}
+          />
+        );
+      })}
       </div>
 
       {/* Footer Branding */}

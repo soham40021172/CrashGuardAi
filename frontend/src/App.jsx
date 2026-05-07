@@ -43,7 +43,7 @@ function App() {
   const [safetyScore, setSafetyScore] = useState(0);
   const [probability, setProbablity] = useState(0);
   const [injuryType, setInjuryType] = useState([]);
-  const [factors, setFactors] = useState('');
+  const [factors, setFactors] = useState([]);
 
   const handlePredict = async (data) => {
     try {
