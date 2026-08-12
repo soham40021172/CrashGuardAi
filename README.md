@@ -19,6 +19,8 @@ Built using:
 ## 🎥 Demo & Project Walkthrough
 
 Watch the system in action:
+### 🚀 Live Demo
+👉 [https://salesforecasting-ytxxhyydyskckbmyhg5lqk.streamlit.app/)
 
 ### 🚀 Full Project Demo (Model + Web App)
 
