@@ -20,7 +20,7 @@ Built using:
 
 Watch the system in action:
 ### 🚀 Live Demo
-👉 [https://salesforecasting-ytxxhyydyskckbmyhg5lqk.streamlit.app/)
+👉 https://crashguardai.netlify.app/
 
 ### 🚀 Full Project Demo (Model + Web App)
 
