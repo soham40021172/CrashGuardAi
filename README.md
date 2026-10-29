@@ -1,205 +1,59 @@
-# 🚗 Vehicle Crash Injury Prediction System
+# Vehicle Crash Injury Prediction
 
-A production-style **Machine Learning + Data Engineering + Analytics Platform** designed to predict injury severity from vehicle crash reports.
+A machine learning project that predicts whether a vehicle crash will result in an injury, using 210,399 crash records. It covers the full workflow: PostgreSQL data extraction, cleaning, feature engineering, model training, a Flask prediction API, a React frontend and a Power BI dashboard.
 
-Built using:
+**Live demo:** https://crashguardai.netlify.app/
 
-* **Python**
-* **Flask REST API**
-* **PostgreSQL**
-* **Scikit-Learn Pipeline**
-* **Feature Engineering**
-* **Power BI**
-* **React (Planned Integration)**
+## Results
 
----
+- Trained on 210,399 crash records with 61 engineered predictors
+- Random Forest classifier with 81% recall on injury cases, using a tuned decision threshold of 0.48
+- SHAP used to show which factors raise or lower injury risk for each prediction
 
----
+## Demo
 
-## 🎥 Demo & Project Walkthrough
+- [Full project demo (model + web app)](https://youtu.be/a0pc44KEHp0)
+- [Power BI dashboard walkthrough](https://youtu.be/t2-qywa1io8)
 
-Watch the system in action:
-### 🚀 Live Demo
-👉 https://crashguardai.netlify.app/
-
-### 🚀 Full Project Demo (Model + Web App)
-
-👉 [https://www.youtube.com/your-demo-link](https://youtu.be/a0pc44KEHp0)
-
----
-
-### 📊 Power BI Dashboard Walkthrough
-
-👉 [https://www.youtube.com/your-powerbi-link](https://youtu.be/t2-qywa1io8)
-
----
-
-## 💡 What these videos show:
-
-* End-to-end pipeline execution
-* Model training and predictions
-* Real-time API usage via Flask
-* Frontend interaction (React UI)
-* Power BI insights and analytics
-* SHAP-based model explainability
-
----
-
-
----
-## 📌 Overview
-
-The **Vehicle Crash Injury Prediction System** is an end-to-end analytics and machine learning project that transforms raw crash data into actionable injury risk predictions.
-
-This project demonstrates a real-world ML workflow including:
-
-* Data ingestion and preprocessing
-* Automated feature engineering
-* Machine learning model training
-* API deployment for predictions
-* Dashboard analytics
-* Production-ready project architecture
-
----
-
-## 🎯 Project Objective
-
-The goal of this project is to:
-
-* Clean and process raw crash report data
-* Build reusable feature engineering pipelines
-* Predict injury severity using machine learning
-* Serve predictions via a Flask API
-* Store and retrieve data using PostgreSQL
-* Visualize insights using Power BI
-* Maintain scalable production architecture
-
----
-
-## 🏗️ Project Architecture
+## How it works
 
 ```text
-Raw Crash Data
-      ↓
-Database Extraction
-      ↓
-Data Cleaning Pipeline
-      ↓
-Feature Engineering
-      ↓
-Model Training
-      ↓
-Model Serialization (.pkl)
-      ↓
-Flask Prediction API
-      ↓
-React Frontend / Power BI Dashboard
+PostgreSQL -> cleaning -> feature engineering -> Random Forest -> saved model (.pkl) -> Flask API -> React app / Power BI
 ```
 
----
+- **Cleaning:** removes noisy and leaky columns, standardizes categorical and numeric fields, and writes a clean table back to PostgreSQL.
+- **Feature engineering:** category consolidation, binary flags and numeric binning, built as reusable scikit-learn transformers.
+- **Model:** Random Forest (400 trees, max depth 12, balanced class weights), with the decision threshold tuned for injury recall rather than accuracy.
+- **Explainability:** SHAP values show each feature's contribution to a prediction.
+- **Dashboard:** Power BI pages cover an executive summary, crash timing, environmental conditions, driver and vehicle analysis, geographic heatmaps and injury prediction insights.
 
-## 📂 Project Structure
+## Tech stack
 
-```text
-crashreport/
-│
-├── crash_report/
-│   ├── db/
-│   │   └── connection.py
-│   │
-│   ├── modeling/
-│   │   ├── train.py
-│   │   └── predict.py
-│   │
-│   ├── pipeline/
-│   │   ├── extract.py
-│   │   ├── load.py
-│   │   ├── cleaning/
-│   │   └── feature_engineering/
-│   │       ├── feature_selector.py
-│   │       └── feature_transformer.py
-│   │
-│   ├── config.py
-│   ├── dataset.py
-│   ├── features.py
-│   └── plots.py
-│
-├── backend/
-│   ├── app/
-│   │   ├── routes/
-│   │   ├── services/
-│   │   └── __init__.py
-│   │
-│   ├── models/
-│   │   ├── crash_model.pkl
-│   │   ├── feature_schema.pkl
-│   │   └── threshold.pkl
-│   │
-│   ├── logs/
-│   ├── requirements.txt
-│   └── wsgi.py
-│
-├── data/
-│   ├── raw/
-│   ├── interim/
-│   ├── processed/
-│   └── external/
-│
-├── models/
-├── notebooks/
-├── tests/
-├── reports/
-├── logs/
-├── README.md
-└── requirements.txt
+Python, Pandas, Scikit-learn, SHAP, Flask, SQLAlchemy, PostgreSQL, React, Power BI
+
+## Getting started
+
+**1. Set up the environment**
+
+```bash
+git clone <repository-url>
+cd crashreport
+python -m venv venv
+source venv/bin/activate        # Windows: venv\Scripts\activate
+pip install -r requirements.txt
 ```
 
----
+**2. Add the dataset**
 
-## ⚙️ Tech Stack
+The raw CSV is too large for GitHub, so [download it from Google Drive](https://drive.google.com/file/d/1pRww1svVeVpW0KagA2gEzeUgJnztQv7R/view?usp=drive_link) and save it as `data/raw/Crash_Reporting_-_Drivers_Data.csv`.
 
-### Backend
-
-* Flask
-* Flask Blueprint Architecture
-* SQLAlchemy
-* Joblib
-* Pandas
-
-### Machine Learning
-
-* Scikit-Learn
-* Random Forest Classifier
-* ColumnTransformer
-* Pipeline API
-
-### Database
-
-* PostgreSQL
-
-### Visualization
-
-* Power BI
-
-### Frontend *(Planned)*
-
-* React.js
-
----
-
-## 🗄️ Database Setup
-
-Create a PostgreSQL database:
+**3. Create the database and configure it**
 
 ```sql
 CREATE DATABASE crash_report_db;
 ```
 
----
-
-## 🔐 Environment Variables
-
-Create a `.env` file in the project root.
+Import the CSV into a `crash_reports` table (pgAdmin or `COPY`), then create a `.env` file in the project root:
 
 ```env
 DB_HOST=localhost
@@ -209,343 +63,35 @@ DB_USER=postgres
 DB_PASSWORD=your_password
 ```
 
----
-
-## 🚀 Installation
-
-### 1️⃣ Clone Repository
+**4. Run the pipeline**
 
 ```bash
-git clone <your-repository-url>
-cd crashreport
+python crash_report/pipeline/load.py      # cleans data into crash_reports_analysis_clean
+python crash_report/modeling/train.py     # trains the model, saves it to models/
+python crash_report/modeling/predict.py   # sample prediction
 ```
 
----
-
-### 2️⃣ Create Virtual Environment
-
-#### Windows
-
-```bash
-python -m venv venv
-venv\Scripts\activate
-```
-
-#### Linux / macOS
-
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
-
----
-
-### 3️⃣ Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-## 🧹 Data Cleaning Pipeline
-
-The cleaning pipeline:
-
-* Extracts raw crash data
-* Cleans categorical columns
-* Cleans numerical columns
-* Generates cleaned SQL tables
-
-Run:
-
-```bash
-python crash_report/pipeline/load.py
-```
-
-Creates:
-
-```text
-crash_reports_analysis_clean
-```
-
-inside PostgreSQL.
-
----
-
-## 🤖 Model Training
-
-Training pipeline includes:
-
-* Feature selection
-* Feature engineering
-* Encoding
-* Random Forest training
-* Model persistence
-
-Run:
-
-```bash
-python crash_report/modeling/train.py
-```
-
-Generated model artifacts:
-
-```text
-models/
-├── crash_model.pkl
-├── feature_schema.pkl
-└── threshold.pkl
-```
-
----
-
-## 🔍 Prediction Script
-
-Run prediction locally:
-
-```bash
-python crash_report/modeling/predict.py
-```
-
-Example output:
-
-```text
-Injury Probability: 0.73
-Predicted Injury: 1
-```
-
----
-
-## 🌐 Running Flask Backend
-
-Navigate to backend:
+**5. Start the API**
 
 ```bash
 cd backend
+python wsgi.py                            # runs on http://localhost:8000
 ```
 
-Run:
+Run the tests with `pytest`.
 
-```bash
-python wsgi.py
-```
+> The training pipeline reads from PostgreSQL, not directly from the CSV.
 
-Server runs at:
+## Project structure
 
 ```text
-http://localhost:8000
+crash_report/   data pipeline, feature engineering, training and prediction code
+backend/        Flask API and saved model files
+data/           raw, interim and processed data
+notebooks/      exploration and analysis
+tests/          pytest tests
 ```
 
----
+## License
 
-## 🧠 Feature Engineering Pipeline
-
-### FeatureSelector
-
-Responsible for:
-
-* Removing leakage columns
-* Dropping noisy features
-* Removing redundant raw columns
-
-### FeatureTransformer
-
-Responsible for:
-
-* Category consolidation
-* Binary feature creation
-* Numerical binning
-* Data transformation
-
----
-
-## 📈 Machine Learning Model
-
-### Algorithm
-
-* Random Forest Classifier
-
-### Parameters
-
-```python
-RandomForestClassifier(
-    n_estimators=400,
-    max_depth=12,
-    min_samples_leaf=10,
-    min_samples_split=20,
-    class_weight="balanced",
-    random_state=42,
-    n_jobs=-1
-)
-```
-## 🔍 Model Explainability (SHAP)
-
-The system includes **SHAP (SHapley Additive exPlanations)** to interpret model predictions.
-
-### What it provides:
-
-* Shows **which features increased injury risk**
-* Shows **which features decreased injury risk**
-* Displays **impact contribution (%) per feature**
-* Helps make the model **transparent and explainable**
-
-This makes the model suitable for **real-world decision support systems**.
-
----
-
-## ✅ Testing
-
-Run all tests:
-
-```bash
-pytest
-```
-
-Run specific tests:
-
-```bash
-pytest tests/test_training.py
-pytest tests/test_feature_engineering.py
-```
-
----
-
-## 📊 Power BI Dashboard
-
-Dashboard includes:
-
-1. Executive Summary
-2. Crash Time Analysis
-3. Environmental Conditions
-4. Driver & Vehicle Analysis
-5. Geographic Heatmaps
-6. Injury Prediction Insights
-
----
-
-## 📂 Dataset Access
-
-Due to GitHub file size limitations, the dataset is hosted externally.
-
-👉 Download the raw dataset from Google Drive:
-https://drive.google.com/file/d/1pRww1svVeVpW0KagA2gEzeUgJnztQv7R/view?usp=drive_link
-
----
-
-## 📥 How to Use the Dataset
-
-After downloading, you have **two options depending on your workflow**:
-
----
-
-### 🔹 Option 1: For Notebook / Local Analysis
-
-1. Download the dataset
-2. Place it inside:
-
-```text
-data/raw/
-```
-
-3. Rename file (recommended):
-
-```text
-Crash_Reporting_-_Drivers_Data.csv
-```
-
-4. Run notebooks or scripts normally
-
----
-
-### 🔹 Option 2: For Full Pipeline (Recommended)
-
-This project is designed using a **production-style database workflow**.
-
-#### Step 1 — Create PostgreSQL Database
-
-```sql
-CREATE DATABASE crash_report_db;
-```
-
----
-
-#### Step 2 — Import CSV into PostgreSQL
-
-You can use:
-
-* pgAdmin (GUI)
-* OR SQL command:
-
-```sql
-COPY crash_reports
-FROM '/path/to/Crash_Reporting_-_Drivers_Data.csv'
-DELIMITER ','
-CSV HEADER;
-```
-
----
-
-#### Step 3 — Run Cleaning Pipeline
-
-```bash
-python crash_report/pipeline/load.py
-```
-
-This will create:
-
-```text
-crash_reports_analysis_clean
-```
-
----
-
-#### Step 4 — Train Model
-
-```bash
-python crash_report/modeling/train.py
-```
-
----
-
-## ⚠️ Important Note
-
-* The ML pipeline **does NOT directly read CSV files**
-* It **expects data from PostgreSQL**
-* This mimics **real-world production systems**
-
----
-
-## 💡 Pro Tip
-
-If you want a simpler setup, you can:
-
-* Modify `extract.py` to read CSV directly
-* OR create a helper script (`setup_db.py`) to automate DB loading
-
-(Advanced users can extend this easily)
-
-
----
-## 👨‍💻 Author
-
-Developed as a complete **Machine Learning + Data Engineering + Analytics Project** for production-grade workflow demonstration.
-
----
-
-## 📜 License
-
-This project is licensed under the **MIT License**.
-
----
-
-## ⭐ Support
-
-If you found this project useful:
-
-* Star the repository
-* Fork the project
-* Contribute improvements
-* Share feedback
-
----
+MIT
