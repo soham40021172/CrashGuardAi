@@ -91,7 +91,20 @@ data/           raw, interim and processed data
 notebooks/      exploration and analysis
 tests/          pytest tests
 ```
+## Key insights from the dashboard
 
+- **Rear-end collisions are the leading crash type,** at 33.0% of all crashes.
+- **17.8% of crashes involved an injury or fatality,** including 192 fatalities.
+- **Crashes peak at 17:00 during the evening rush,** and Friday is the most frequent day.
+- **Weekends account for 22.9% of crashes,** and Sunday has the highest injury rate.
+- **90.8% of crashes happen in unincorporated areas.** Within city limits, Rockville, Gaithersburg and Takoma Park have the highest concentration.
+- **Local roads are the most common location,** at 49% of crashes.
+
+![Executive summary](reports/figures/Comphrensive_crash.png)
+![Executive summary](<reports/figures/Environmental factors.png>)
+![Executive summary](<reports/figures/Location Analysis.png>)
+![Executive summary](<reports/figures/rythm of risk.png>)
+![Executive summary](<reports/figures/vehicle & Driver behaviour.png>)
 ## License
 
 MIT
